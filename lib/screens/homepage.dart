@@ -9,7 +9,7 @@ class Homepage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Connectivity'),
+        title: const Text('Connectivity'),
       ),
       body: BlocBuilder<ConnectivityBloc, ConnectivityState>(
         builder: (context, state) {

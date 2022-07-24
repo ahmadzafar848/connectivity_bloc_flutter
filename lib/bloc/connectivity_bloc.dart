@@ -17,6 +17,15 @@ class ConnectivityBloc extends Bloc<ConnectivityEvent, ConnectivityState> {
     on<DisconnectedEvent>((event, emit) {
       emit.call(DisconnectedState());
     });
+    connectivity.checkConnectivity().then((result) {
+      if (result == ConnectivityResult.none) {
+        add(DisconnectedEvent());
+      } else {
+        add(ConnectedEvent(
+          connectivityResult: result,
+        ));
+      }
+    });
     streamSubscription = connectivity.onConnectivityChanged.listen((result) {
       if (result == ConnectivityResult.none) {
         add(DisconnectedEvent());
